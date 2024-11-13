@@ -1,6 +1,8 @@
 import styled from "styled-components";
-import MasterBall from "../assets/pokeball.png";
-import { AddButton } from "../pages/Dex";
+import pokeball from "/src/assets/pokeball.png";
+import { AddButton } from "./Dex";
+import { useContext } from "react";
+import PokemonContext from "../Context/PokemonContext";
 import { useNavigate } from "react-router-dom";
 
 const MainContainer = styled.div`
@@ -56,14 +58,8 @@ const SelectPokemon = styled.img`
   border: 1px solid rgb(221, 221, 221);
 `;
 
-const DashBoard = ({ dashBoardPokemons, setDashBoardPokemons }) => {
-  const deletePokemon = (event, id) => {
-    // event.preventDefault();
-    console.log(id);
-    setDashBoardPokemons(
-      dashBoardPokemons.filter((dashBoardPokemon) => dashBoardPokemon.id !== id)
-    );
-  };
+const DashBoard = () => {
+  const { deletePokemon, dashBoardPokemons } = useContext(PokemonContext);
   console.log(dashBoardPokemons);
   const PokemonDetailnavigate = useNavigate();
   return (
@@ -93,7 +89,7 @@ const DashBoard = ({ dashBoardPokemons, setDashBoardPokemons }) => {
                   </div>
                 </SelectStyle>
               ) : (
-                <SelectPokemon src={MasterBall} alt="MasterBall-Logo" />
+                <SelectPokemon src={pokeball} alt="pokeball.png" />
               )}
             </div>
           );

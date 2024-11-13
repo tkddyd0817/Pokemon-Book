@@ -1,8 +1,9 @@
 import MOCK_DATA from "../components/pokemonList";
 import styled from "styled-components";
-import DashBoard from "../pages/DashBoard";
-import { useState } from "react";
+import DashBoard from "./DashBoard";
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import PokemonContext from "../Context/PokemonContext";
 
 const PokemonContainer = styled.div`
   display: grid;
@@ -44,49 +45,30 @@ export const AddButton = styled.button`
 `;
 
 const Dex = () => {
-  const [dashBoardPokemons, setDashBoardPokemons] = useState([]);
   const PokemonDetailnavigate = useNavigate();
-  const addPokemon = (event, data) => {
-    event.preventDefault();
-    console.log(data);
-
-    if (dashBoardPokemons.some((p) => p.id === data.id)) {
-      alert("중복된 포켓몬은 동행할수없습니다!!!");
-      return;
-    }
-
-    if (dashBoardPokemons.length >= 6) {
-      alert("포켓몬은 6마리 만 동행이 가능합니다"); //킵!!!
-      return;
-    }
-    setDashBoardPokemons([...dashBoardPokemons, data]);
-  };
+  const { addPokemon } = useContext(PokemonContext);
 
   return (
     <>
-      <DashBoard
-        dashBoardPokemons={dashBoardPokemons}
-        setDashBoardPokemons={setDashBoardPokemons}
-      />
+      <DashBoard />
       <PokemonContainer>
-          {MOCK_DATA.map((data) => (
-            <PokemonStyle key={data.id}>
-              <img src={data.img_url} 
+        {MOCK_DATA.map((data) => (
+          <PokemonStyle key={data.id}>
+            <img
+              src={data.img_url}
               onClick={() => {
                 PokemonDetailnavigate(`/dex/${data.id}`);
-              }}/>
-              <div>
-                <p>{data.korean_name}</p>
-                <p>{data.id}</p>
-                <AddButton onClick={(event) => addPokemon(event, data)}>
-                  추가
-                </AddButton>
-              </div>
-            </PokemonStyle>
-          ))}
+              }}
+            />
+            <div>
+              <p>{data.korean_name}</p>
+              <p>No:{data.id}</p>
+              <AddButton onClick={() => addPokemon(data)}>추가</AddButton>
+            </div>
+          </PokemonStyle>
+        ))}
       </PokemonContainer>
     </>
   );
 };
-
 export default Dex;
