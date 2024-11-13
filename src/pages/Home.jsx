@@ -66,9 +66,9 @@ const Home = () => {
   return (
     <HomeBody>
       <MainContainer>
-        <TitleImg src="/src/assets/Gengar.jpg" alt="TitleImg" />
+        <TitleImg src="/src/public/Gengar.jpg" alt="TitleImg" />
         <TitleContainer>
-          <TitleLogo src="/src/assets/pokemon-logo.png" alt="TitleLogo" />
+          <TitleLogo src="/src/public/pokemon-logo.png" alt="TitleLogo" />
           <TitleButton
             onClick={() => {
               navigate("/Dex");

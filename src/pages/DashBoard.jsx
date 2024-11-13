@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import pokeball from "/src/assets/pokeball.png";
+import pokeball from "/src/public/pokeball.png";
 import { AddButton } from "./Dex";
 import { useContext } from "react";
 import PokemonContext from "../Context/PokemonContext";
