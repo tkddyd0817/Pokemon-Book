@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import pokeball from "/pokeball.png";
+// import pokeball from "/pokeball.png";
 import { AddButton } from "./Dex";
 import { useContext } from "react";
 import PokemonContext from "../Context/PokemonContext";
@@ -89,7 +89,7 @@ const DashBoard = () => {
                   </div>
                 </SelectStyle>
               ) : (
-                <SelectPokemon src={pokeball} alt="pokeball.png" />
+                <SelectPokemon src="/pokeball.png" alt="pokeball.png" />
               )}
             </div>
           );
