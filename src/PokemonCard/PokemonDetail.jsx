@@ -1,6 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
-import MOCK_DATA from "../components/pokemonList";
+import MOCK_DATA from "../pokemonList/pokemonList";
 import PokemonContext from "../Context/PokemonContext";
 import { useContext } from "react";
 

@@ -1,5 +1,4 @@
 import styled from "styled-components";
-// import pokeball from "/pokeball.png";
 import { AddButton } from "./Dex";
 import { useContext } from "react";
 import PokemonContext from "../Context/PokemonContext";
@@ -67,22 +66,22 @@ const DashBoard = () => {
       <Title> 당신의 포켓몬</Title>
       <SelectContainer>
         {Array.from({ length: 6 }).map((_, index) => {
-          const card = dashBoardPokemons[index];
+          const Pokemoncard = dashBoardPokemons[index];
           return (
             <div key={index}>
-              {card ? (
-                <SelectStyle key={card.id}>
+              {Pokemoncard ? (
+                <SelectStyle key={Pokemoncard.id}>
                   <img
-                    src={card.img_url}
+                    src={Pokemoncard.img_url}
                     onClick={() => {
-                      PokemonDetailnavigate(`/Dex/${card.id}`);
+                      PokemonDetailnavigate(`/Dex/${Pokemoncard.id}`);
                     }}
                   />
                   <div>
-                    <p>{card.korean_name}</p>
-                    <p>{card.id}</p>
+                    <p>{Pokemoncard.korean_name}</p>
+                    <p>{Pokemoncard.id}</p>
                     <AddButton
-                      onClick={(event) => deletePokemon(event, card.id)}
+                      onClick={(event) => deletePokemon(event, Pokemoncard.id)}
                     >
                       삭제
                     </AddButton>

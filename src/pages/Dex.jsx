@@ -1,4 +1,4 @@
-import MOCK_DATA from "../components/pokemonList";
+import MOCK_DATA from "../pokemonList/pokemonList";
 import styled from "styled-components";
 import DashBoard from "./DashBoard";
 import { useContext } from "react";
@@ -52,18 +52,20 @@ const Dex = () => {
     <>
       <DashBoard />
       <PokemonContainer>
-        {MOCK_DATA.map((data) => (
-          <PokemonStyle key={data.id}>
+        {MOCK_DATA.map((partnerpokemon) => (
+          <PokemonStyle key={partnerpokemon.id}>
             <img
-              src={data.img_url}
+              src={partnerpokemon.img_url}
               onClick={() => {
-                PokemonDetailnavigate(`/dex/${data.id}`);
+                PokemonDetailnavigate(`/dex/${partnerpokemon.id}`);
               }}
             />
             <div>
-              <p>{data.korean_name}</p>
-              <p>No:{data.id}</p>
-              <AddButton onClick={() => addPokemon(data)}>추가</AddButton>
+              <p>{partnerpokemon.korean_name}</p>
+              <p>No:{partnerpokemon.id}</p>
+              <AddButton onClick={() => addPokemon(partnerpokemon)}>
+                추가
+              </AddButton>
             </div>
           </PokemonStyle>
         ))}
