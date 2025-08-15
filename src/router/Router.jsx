@@ -8,6 +8,7 @@ import { PersistGate } from "redux-persist/integration/react";
 
 function Router() {
   return (
+    <>
     <Provider store={pokemonStore}>
       <PersistGate loading={null} persistor={persistor}>
         <BrowserRouter>
@@ -19,6 +20,7 @@ function Router() {
         </BrowserRouter>
       </PersistGate>
     </Provider>
+    </>
   );
 }
 

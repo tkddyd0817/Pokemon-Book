@@ -1,7 +1,3 @@
-// export: 내보내기 vs export default: 대표 내보내기
-
-// export는 여러 개 내보내기 가능
-// export 한 데이터는 import 할 때 {} 안에서 가져온다
 const MOCK_DATA = [
   {
     img_url:
