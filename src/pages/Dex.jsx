@@ -1,9 +1,9 @@
 import MOCK_DATA from "../pokemonList/pokemonList";
 import styled from "styled-components";
-import DashBoard from "./DashBoard";
-import { useContext } from "react";
+// import DashBoard from "./DashBoard";
+
 import { useNavigate } from "react-router-dom";
-import PokemonContext from "../Context/PokemonContext";
+
 
 const PokemonContainer = styled.div`
   display: grid;
@@ -45,27 +45,27 @@ export const AddButton = styled.button`
 `;
 
 const Dex = () => {
-  const PokemonDetailnavigate = useNavigate();
-  const { addPokemon } = useContext(PokemonContext);
+  const navigate = useNavigate();
+
+
 
   return (
     <>
-      <DashBoard />
+      {/* <DashBoard /> */}
       <PokemonContainer>
-        {MOCK_DATA.map((partnerpokemon) => (
-          <PokemonStyle key={partnerpokemon.id}>
+        {MOCK_DATA.map((data) => (
+          <PokemonStyle key={data.id}>
             <img
-              src={partnerpokemon.img_url}
+              src={data.img_url}
               onClick={() => {
-                PokemonDetailnavigate(`/dex/${partnerpokemon.id}`);
+                navigate(`/dex/${data.id}`);
               }}
             />
             <div>
-              <p>{partnerpokemon.korean_name}</p>
-              <p>No:{partnerpokemon.id}</p>
-              <AddButton onClick={() => addPokemon(partnerpokemon)}>
-                추가
-              </AddButton>
+              <p>No: {data.id}</p>
+              <p>Name: {data.korean_name}</p>
+              <p>TYPE: {data.types.join(", ")}</p>
+              <AddButton>추가</AddButton>
             </div>
           </PokemonStyle>
         ))}

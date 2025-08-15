@@ -1,8 +1,6 @@
 import { useNavigate, useParams } from "react-router-dom";
 import styled from "styled-components";
 import MOCK_DATA from "../pokemonList/pokemonList";
-import PokemonContext from "../Context/PokemonContext";
-import { useContext } from "react";
 
 const DetailContainer = styled.div`
   display: flex;
@@ -63,23 +61,24 @@ const DetailImg = styled.img`
   height: 200px;
 `;
 const PokemonDetail = () => {
-  const params = useParams();
+  const {id} = useParams();
   const navigate = useNavigate();
-  const { addPokemon } = useContext(PokemonContext);
-  const targetPokemon = MOCK_DATA.find((data) => data.id === Number(params.id));
+
+  const pokemon = MOCK_DATA.find((data) => data.id === Number(id));
   return (
     <DetailContainer>
       <DetailImg
-        src={`${targetPokemon.img_url}`}
-        alt={targetPokemon.korean_name}
+        src={`${pokemon.img_url}`}
+        alt={pokemon.korean_name}
       />
-      <PokemonName>{targetPokemon.korean_name}</PokemonName>
-      <PokemonInformation>{targetPokemon.description}</PokemonInformation>
-      <PokemonType>타입:{targetPokemon.types.join(", ")}</PokemonType>
-      <AddButton onClick={() => addPokemon(targetPokemon)}>추가</AddButton>
+      <PokemonName>{pokemon.korean_name}</PokemonName>
+       <PokemonType>타입:{pokemon.types.join(", ")}</PokemonType>
+      <PokemonInformation>{pokemon.description}</PokemonInformation>
+     
+      <AddButton >추가</AddButton>
       <NavigateButton
         onClick={() => {
-          navigate("/Dex");
+          navigate(-1);
         }}
       >
         {" "}
