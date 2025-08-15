@@ -13,8 +13,8 @@ function Router() {
         <BrowserRouter>
           <Routes>
             <Route path="/" element={<Home />} />
-            <Route path="/" element={<Dex />} />
-            <Route path="/" element={<PokemonDetail />} />
+            <Route path="/dex" element={<Dex />} />
+            <Route path="/dex/:id" element={<PokemonDetail />} />
           </Routes>
         </BrowserRouter>
       </PersistGate>

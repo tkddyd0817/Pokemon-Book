@@ -1,9 +1,11 @@
 import MOCK_DATA from "../pokemonList/pokemonList";
 import styled from "styled-components";
-// import DashBoard from "./DashBoard";
+import DashBoard from "./DashBoard";
 
 import { useNavigate } from "react-router-dom";
-
+import { useDispatch, useSelector } from "react-redux";
+import { addPokemon } from "../redux/PokemonTeamSlice";
+import { toast } from "react-toastify";
 
 const PokemonContainer = styled.div`
   display: grid;
@@ -46,12 +48,29 @@ export const AddButton = styled.button`
 
 const Dex = () => {
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+  const selectedPokemon = useSelector((state) => state.pokemonTeam.team);
+
+  const handleAdd = (addTo) => {
+   if (selectedPokemon.find((p) => p.id === addTo.id)) {
+  toast.error("중복된 포켓몬은 추가할 수 없어요!"); 
+  return;
+}
 
 
+if (selectedPokemon.length >= 6) {
+  toast.warn("포켓몬 팀은 최대 6마리까지 가능해요!"); 
+  return;
+}
+
+    dispatch(addPokemon(addTo));
+   toast.success(`${addTo.korean_name}이(가) 팀에 등록되었습니다.`);
+    return;
+  };
 
   return (
     <>
-      {/* <DashBoard /> */}
+      <DashBoard />
       <PokemonContainer>
         {MOCK_DATA.map((data) => (
           <PokemonStyle key={data.id}>
@@ -65,7 +84,7 @@ const Dex = () => {
               <p>No: {data.id}</p>
               <p>Name: {data.korean_name}</p>
               <p>TYPE: {data.types.join(", ")}</p>
-              <AddButton>추가</AddButton>
+              <AddButton onClick={() => handleAdd(data)}>추가</AddButton>
             </div>
           </PokemonStyle>
         ))}

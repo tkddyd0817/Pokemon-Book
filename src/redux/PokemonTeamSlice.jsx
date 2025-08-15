@@ -1,28 +1,24 @@
-import { createSlice } from "@reduxjs/toolkit"
+import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
-    team:[],
-}
+  team: [],
+};
 
 const pokemonTeamSlice = createSlice({
-    name:'pokemonTeam',
-    initialState,
-    reducers:{
+  name: "pokemonTeam",
+  initialState,
+  reducers: {
+    addPokemon: (state, action) => {
+      const addId = action.payload;
+      state.team.push(addId);
+    },
 
-        addPokemon:(state,action) =>{
-            const addId = action.payload
-            state.team.push(addId)
-        },
+    deletePokemon: (state, action) => {
+      const deleteId = action.payload;
+      state.team = state.team.filter((p) => p.id !== deleteId.id);
+    },
+  },
+});
 
-deletePokemon : (state,action) =>{
-    const deleteId = action.payload
-    state.team= state.team.filter((p)=>p.id!==deleteId)
-}
-
-
-    }
-})
-
-
-export const {addPokemon,deletePokemon} = pokemonTeamSlice.actions
-export default pokemonTeamSlice.reducer
+export const { addPokemon, deletePokemon } = pokemonTeamSlice.actions;
+export default pokemonTeamSlice.reducer;
